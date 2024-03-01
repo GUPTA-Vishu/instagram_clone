@@ -1,0 +1,81 @@
+.box{
+    height:100vh;
+    width: 100wh;
+    position: relative;
+
+}
+.image_pic{
+    height:5%;
+    width:15%; 
+}
+h2{
+    font-size:xx-large;
+    font-weight: 900;
+    
+}
+.inner{
+    height: 30px;
+    width: 15%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Add border */
+    background-color: #f9f9f9; /* Add background color */
+    padding: 5px 10px; /* Add padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
+    text-align: left; /* Align text left */
+    font-size: 14px; /* Set font size */
+}
+
+#button{
+    height:10%;
+    width:10%;
+    background-color: #007bff; /* Set background color */
+    color: #fff; /* Set text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add border radius */
+    padding: 10px 20px; /* Add padding */
+    font-size: 16px; /* Set font size */
+    cursor: pointer; /* Add cursor pointer on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  #button:hover{
+    background-color: #0056b3; 
+  }
+
+ .down_block1 {
+ /* background-color:#F9F9F9; */
+  width: 25vw;
+  margin-left: 38%;
+}
+.down_block1 span {
+    color: #007bff;
+    font-weight: 900;
+
+}
+
+
+  @media screen and (max-width: 768px) {
+    .inner,
+    #button,
+    .down_block {
+        width: 60%; /* Adjust width for smaller screens */
+    }
+
+    #button {
+        height: 60px; /* Increase height for button in smaller screens */
+        font-size: 24px; /* Increase font size for button in smaller screens */
+    }
+
+    .down_block1 {
+     margin-left: auto; /* Center the block horizontally */
+    margin-right: auto; /* Center the block horizontally */
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center the block horizontally */
+    margin-bottom: 40px;
+    }
+
+    .down_block1 span{
+        color: #007bff;
+        font-weight: 900;
+      }
+}

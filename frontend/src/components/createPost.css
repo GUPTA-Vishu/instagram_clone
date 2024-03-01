@@ -1,0 +1,24 @@
+.Create-Post{
+    max-width:500px;
+    margin:20px auto;
+    border: 1px solid rgb(62, 52, 52); 
+}
+.post_header{
+    display:flex;
+    
+
+
+}
+
+#post-btn{
+    background: none;
+    color:aqua;
+    border:none;
+    cursor:pointer;
+    font-weight: bolder;
+
+
+}
+.main-div{
+    border-top:1px solid rgb(62, 52, 52);
+}
