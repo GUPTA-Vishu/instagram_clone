@@ -1,24 +1,111 @@
-.Create-Post{
-    max-width:500px;
-    margin:20px auto;
-    border: 1px solid rgb(62, 52, 52); 
-}
-.post_header{
+/* Styles for CreatePost component */
+.Create-Post {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #040404;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header styles */
+  .post_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .post_header h4 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .post_header button {
+    background-color:#0056B3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .post_header button:hover {
+    background-color: #3949ab;
+  }
+  
+  /* Divider styles */
+  .main-div {
+    margin-top: 10px;
+    background-color:#F9F9F9;
+    align-items: center;
     display:flex;
-    
+    flex-direction: column;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-radius: 20px;
+  }
+  
+  /* Profile card styles */
+  .details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-card {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-image img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .profile-card h4 {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Textarea styles */
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333;
+  }
 
-
-}
-
-#post-btn{
-    background: none;
-    color:aqua;
-    border:none;
-    cursor:pointer;
-    font-weight: bolder;
-
-
-}
-.main-div{
-    border-top:1px solid rgb(62, 52, 52);
-}
+  .browse-button {
+    background-color:#0056B3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px; /* Add margin-top to separate the button from the image */
+  }
+  
+  .browse-button:hover {
+    background-color: #3949ab;
+  }
+  
+  /* Responsive styles for mobile */
+  @media (max-width: 768px) {
+    .Create-Post {
+      max-width: 90%;
+      margin: 20px auto;
+    }
+  }
+  
