@@ -1,11 +1,22 @@
+// auth.js
+
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const USER = mongoose.model("USER");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = require("../keys"); // Import JWT secret key from keys.js
+const requireLogin = require("../middlewares/requireLogin");
 
 router.get("/", (req, res) => {
   res.send("hello world");
+});
+
+router.get("/createPost", requireLogin, (req, res) => {
+  console.log("hello auth");
+  
+
 });
 
 router.post("/signup", (req, res) => {
@@ -60,7 +71,10 @@ router.post("/signin", (req, res) => {
         return res.status(500).json({ error: "Internal server error" });
       }
       if (result) {
-        return res.status(200).json({ message: "Signed in successfully" });
+        // Generate JWT token
+        const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET);
+        console.log(token);
+        return res.status(200).json({ message: "Signed in successfully", token });
       } else {
         return res.status(422).json({ error: "Invalid password" });
       }
@@ -70,10 +84,5 @@ router.post("/signin", (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   });
 });
-
-
-
-
-
 
 module.exports = router;

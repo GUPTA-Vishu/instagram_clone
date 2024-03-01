@@ -14,7 +14,7 @@ app.use(require("./routes/auth"));
 const port = 5000; // You can change this port number to any port you prefer
 
 // MongoDB connection URL
-const mongoUrl=require("./keys");
+const {mongoUrl}=require("./keys");
 mongoose.connect(mongoUrl);
 
 
