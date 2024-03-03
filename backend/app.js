@@ -7,8 +7,10 @@ app.use(cors());
 app.use(express.json());
 
 require("./models/models");
+require("./models/post");
 
 app.use(require("./routes/auth"));
+app.use(require("./routes/createPost"));
 
 
 const port = 5000; // You can change this port number to any port you prefer
