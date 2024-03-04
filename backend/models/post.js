@@ -3,10 +3,7 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema.Types;
 // Define the User schema
 const postSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
+  
   body: {
     type: String,
     required: true,
@@ -14,7 +11,7 @@ const postSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default:"no photo"
+    required: true,
     
   },
   postedBy: {

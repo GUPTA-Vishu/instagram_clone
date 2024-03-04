@@ -5,23 +5,25 @@ const requireLogin = require("../middlewares/requireLogin"); // Assuming your re
 
 // Route to handle POST requests to create a new post
 router.post("/createPost", requireLogin, async (req, res) => {
-  const { title, body } = req.body;
+  const { body,pic } = req.body;
 
   try {
     // Check if title and body are provided
-    if (!title || !body) {
+    if (!body|| !pic) {
       return res.status(422).json({ error: "Please add all the fields" });
     }
 
     // Create a new post object
     const newPost = new Post({
-      title,
+      
       body,
+      photo: pic,
       postedBy: req.user._id // Use the ObjectId of the logged-in user
     });
 
     // Save the post to the database
     const savedPost = await newPost.save();
+    console.log(savedPost);
 
     res.json(savedPost); // Return the saved post
   } catch (error) {

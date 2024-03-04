@@ -40,10 +40,12 @@ const SignIn = () => {
         if (data.error) {
           notifyA(data.error);
         } else {
-          notifyB(data.message);
+          notifyB(data.message)
+          console.log(data.token);
+          localStorage.setItem("jwt", data.token);
           navigate("/");
         }
-        console.log(data);
+        console.log(data.token);
       });
   };
 
