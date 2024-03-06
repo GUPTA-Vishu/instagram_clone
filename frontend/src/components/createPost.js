@@ -5,7 +5,7 @@ import Preview from "./image/Preview.png"; // adjust the file extension based on
 
 const CreatePost = () => {
   const [image, setImage] = useState(null);
-  const [body, setBody] = useState("");
+  const [caption, setCaption] = useState("");
   const [url, setUrl] = useState(null);
 
   useEffect(() => {
@@ -15,10 +15,10 @@ const CreatePost = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem("jwt"),
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
         body: JSON.stringify({
-          body,
+          body: caption,
           pic: url,
         }),
       })
@@ -51,7 +51,7 @@ const CreatePost = () => {
 
   // Posting image to Cloudinary and obtaining its URL
   const createPostDetails = () => {
-    setBody("");
+    setCaption("");
     setImage(Preview);
 
     // Upload image to Cloudinary and obtain URL
@@ -64,7 +64,6 @@ const CreatePost = () => {
       body: data,
     })
       .then((res) => res.json())
-      
       .then((data) => setUrl(data.url)) // Set the obtained URL
       .catch((err) => console.log(err));
   };
@@ -118,9 +117,9 @@ const CreatePost = () => {
       </div>
       <textarea
         type="text"
-        value={body}
+        value={caption}
         onChange={(e) => {
-          setBody(e.target.value);
+          setCaption(e.target.value);
         }}
         placeholder="Write a caption here..."
       ></textarea>
