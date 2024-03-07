@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./createPost.css";
+import { useNavigate } from "react-router-dom";
 
 import Preview from "./image/Preview.png"; // adjust the file extension based on the actual image file type
 
@@ -8,6 +9,7 @@ const CreatePost = () => {
   const [caption, setCaption] = useState("");
   const [url, setUrl] = useState(null);
   const [file, setFile] = useState(null); // New state to hold the file
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     if (url) {
@@ -28,10 +30,11 @@ const CreatePost = () => {
           setCaption("");
           setImage(null);
           setUrl("");
+          navigate('/');
         })
         .catch((err) => console.log(err));
     }
-  }, [url, caption]);
+  }, [url, caption,navigate]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
