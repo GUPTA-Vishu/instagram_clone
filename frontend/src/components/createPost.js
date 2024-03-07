@@ -7,9 +7,9 @@ const CreatePost = () => {
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
   const [url, setUrl] = useState(null);
+  const [file, setFile] = useState(null); // New state to hold the file
 
   useEffect(() => {
-    // When the URL is updated (i.e., when an image is uploaded and its URL is obtained), send the data to the backend
     if (url) {
       fetch("http://localhost:5000/createPost", {
         method: "POST",
@@ -18,15 +18,20 @@ const CreatePost = () => {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
         body: JSON.stringify({
-          body: caption,
+          caption,
           pic: url,
         }),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data))
+        .then((data) => {
+          console.log(data);
+          setCaption("");
+          setImage(null);
+          setUrl("");
+        })
         .catch((err) => console.log(err));
     }
-  }, [url]);
+  }, [url, caption]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -36,11 +41,7 @@ const CreatePost = () => {
         setImage(reader.result);
       };
       reader.readAsDataURL(file);
-    } else {
-      // Display placeholder image when no file is chosen
-      setImage(
-        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.iconpacks.net%2Ffree-icon%2Ffile-1453.html&psig=AOvVaw1gMN7ytwCzCoWSBJc_7_Ts&ust=1709379445351000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCIjRrOf80oQDFQAAAAAdAAAAABAJ"
-      );
+      setFile(file); // Save the file for uploading
     }
   };
 
@@ -51,20 +52,19 @@ const CreatePost = () => {
 
   // Posting image to Cloudinary and obtaining its URL
   const createPostDetails = () => {
-    setCaption("");
-    setImage(Preview);
+    if (!file) return; // Ensure there's a file to upload
 
-    // Upload image to Cloudinary and obtain URL
     const data = new FormData();
-    data.append("file", image);
+    data.append("file", file);
     data.append("upload_preset", "insta_clone");
     data.append("cloud_name", "dr7gktuli");
+
     fetch("https://api.cloudinary.com/v1_1/dr7gktuli/image/upload", {
       method: "POST",
       body: data,
     })
       .then((res) => res.json())
-      .then((data) => setUrl(data.url)) // Set the obtained URL
+      .then((data) => setUrl(data.url))
       .catch((err) => console.log(err));
   };
 

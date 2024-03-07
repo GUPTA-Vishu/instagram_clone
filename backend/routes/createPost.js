@@ -9,18 +9,18 @@ router.use(express.json());
 
 // Route to handle POST requests to create a new post
 router.post("/createPost", requireLogin, async (req, res) => {
-  const { body, pic } = req.body;
+  const { caption, pic } = req.body;
   console.log(pic);
-  console.log(body);
+  console.log(caption);
 
-  if (!body || !pic) {
+  if (!caption|| !pic) {
     return res.status(422).json({ error: "Please add all the fields" });
   }
   console.log(req.user);
   const post = new Post({
-    body: body,
+    body:caption,
     photo: pic,
-    postedBy: req.user,
+    postedBy: req.user._id,
   });
 
   try {
