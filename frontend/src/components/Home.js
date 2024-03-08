@@ -1,11 +1,17 @@
-// Welcome.js
-
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
- // Assuming you use React Router for navigation
 
 const Welcome = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (!token) {
+      navigate("/signup"); // Navigate to the signup page if user is not logged in
+    }
+  }, []);
+
   return (
     <div className="card">
       <div className="card-header">
@@ -25,7 +31,6 @@ const Welcome = () => {
         {/* font icon */}
         <span className="material-symbols-outlined">sentiment_satisfied</span>
         <input type="text" placeholder="add a comment" />
-
         <button>post</button>
       </div>
     </div>

@@ -23,6 +23,36 @@ const Navbar = () => {
 		};
 	}, []);
 
+	const loginStatus = () => {
+		const token=localStorage.getItem('jwt')
+		if(token){
+			return[
+				<>
+				<Link to="/profile">
+					<li className='links'>Profile</li>
+				</Link>
+
+				<Link to="/createPost">
+					<li className='links'>Create Post</li>
+				</Link>
+				</>
+			]
+		}
+		else {
+			return[
+				<>
+				<Link to="/signup">
+					<li className='links'>Sign up</li>
+				</Link>
+				<Link to="/signin">
+					<li className='links'>Sign in</li>
+				</Link>
+				</>
+			]
+		}
+	};
+	
+
 	return (
 		<div className='navbar'>
 
@@ -32,19 +62,8 @@ const Navbar = () => {
 				</Link>
 			</div>
 			<ul className='nav-menu'>
-				<Link to="/signup">
-					<li className='links'>Sign up</li>
-				</Link>
-				<Link to="/signin">
-					<li className='links'>Sign in</li>
-				</Link>
-				<Link to="/profile">
-					<li className='links'>Profile</li>
-				</Link>
+				{loginStatus()};
 
-				<Link to="/createPost">
-					<li className='links'>Create Post</li>
-				</Link>
 			</ul>
 			<div className='toggle_btn' onClick={toggleBtn}>
 				<i className={`fa-solid fa-lg ${isToggleOpen ? "fa-xmark" : "fa-bars"}`}></i>
