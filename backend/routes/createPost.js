@@ -8,6 +8,14 @@ router.use(express.json());
 // Assuming your requireLogin middleware is in a file named requireLogin.js
 
 // Route to handle POST requests to create a new post
+
+
+router.get("/allposts",(req,res)=>{
+  Post.find()
+  .populate("postedBy", "_id name")
+  .then(posts=>res.json(posts))
+  .catch(err=>console.log(err))
+});
 router.post("/createPost", requireLogin, async (req, res) => {
   const { caption, pic } = req.body;
   console.log(pic);

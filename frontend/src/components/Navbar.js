@@ -3,7 +3,7 @@ import logo from './image/logo.png';
 import "./Navbar.css";
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({login}) => {
 	const windowSize = useRef([window.innerWidth, window.innerHeight]);
 	const [isToggleOpen, setisToggleOpen] = useState(false)
 	const toggleBtn = () => {
@@ -25,7 +25,7 @@ const Navbar = () => {
 
 	const loginStatus = () => {
 		const token=localStorage.getItem('jwt')
-		if(token){
+		if( login || token){
 			return[
 				<>
 				<Link to="/profile">
