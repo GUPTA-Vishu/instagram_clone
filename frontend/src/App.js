@@ -9,12 +9,14 @@ import Profile from "./components/Profile";
 import Home from "./components/Home";
 import CreatePost from "./components/createPost";
 import { LoginContext } from "./context/LoginContext";
+import Modal from "./components/Modal";
 
 function App() {
   const [userLogin, setUserLogin] = useState(false);
+  const[modalOpen, setModalOpen] = useState(false);
   return (
     <div className="App">
-      <LoginContext.Provider value={{setUserLogin}}>
+      <LoginContext.Provider value={{setUserLogin,setModalOpen}}>
         <BrowserRouter>
           <Navbar login={userLogin} />
           <br />
@@ -26,6 +28,7 @@ function App() {
             <Route path="/createPost" element={<CreatePost />} />
           </Routes>
         </BrowserRouter>
+        {modalOpen && <Modal setModalOpen={setModalOpen}></Modal>}
       </LoginContext.Provider>
     </div>
   );

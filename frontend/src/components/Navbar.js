@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState,useContext } from 'react';
 import logo from './image/logo.png';
 import "./Navbar.css";
 import { Link } from 'react-router-dom';
+import { LoginContext } from '../context/LoginContext';
 
 const Navbar = ({login}) => {
+	const {setModalOpen}=useContext(LoginContext);
 	const windowSize = useRef([window.innerWidth, window.innerHeight]);
 	const [isToggleOpen, setisToggleOpen] = useState(false)
 	const toggleBtn = () => {
@@ -34,6 +36,10 @@ const Navbar = ({login}) => {
 
 				<Link to="/createPost">
 					<li className='links'>Create Post</li>
+				</Link>
+
+				<Link to={""}>
+					<button className='logoutBtn' onClick={()=>setModalOpen(true)}>Log Out</button>
 				</Link>
 				</>
 			]
