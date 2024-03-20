@@ -125,6 +125,7 @@ const SignUp = () => {
           <ToastContainer />
         </form>
       </div>
+      <br />
 
       <div className="down_block">
         <p>

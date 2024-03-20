@@ -1,8 +1,6 @@
-import "./App.css";
-import Navbar from "./components/Navbar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
-import { createContext, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Profile from "./components/Profile";
@@ -13,12 +11,21 @@ import Modal from "./components/Modal";
 
 function App() {
   const [userLogin, setUserLogin] = useState(false);
-  const[modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleLogoutClick = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div className="App">
-      <LoginContext.Provider value={{setUserLogin,setModalOpen}}>
-        <BrowserRouter>
-          <Navbar login={userLogin} />
+      <BrowserRouter>
+        <LoginContext.Provider value={{ setUserLogin, setModalOpen }}>
+          <Navbar login={userLogin} onLogoutClick={handleLogoutClick} />
           <br />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -27,9 +34,9 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/createPost" element={<CreatePost />} />
           </Routes>
-        </BrowserRouter>
-        {modalOpen && <Modal setModalOpen={setModalOpen}></Modal>}
-      </LoginContext.Provider>
+          {modalOpen && <Modal />}
+        </LoginContext.Provider>
+      </BrowserRouter>
     </div>
   );
 }

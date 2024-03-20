@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
-  const {setUserLogin}=useContext(LoginContext);
+  const { setUserLogin } = useContext(LoginContext);
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
@@ -43,7 +43,7 @@ const SignIn = () => {
         if (data.error) {
           notifyA(data.error);
         } else {
-          notifyB("signed in successfully")
+          notifyB("signed in successfully");
 
           console.log(data.token);
           localStorage.setItem("jwt", data.token);
@@ -55,39 +55,39 @@ const SignIn = () => {
   };
 
   return (
-    <div className="box">
-      <img className="image_pic" src={pic} alt="" />
-      <h2 className="tag">Sign in</h2>
-      <form className="form" onSubmit={handleSignIn}>
-        <div>
+    <div className="container">
+      <div className="logo">
+        <img src={pic} alt="Logo" />
+      </div>
+      <form onSubmit={handleSignIn}>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
           <input
-            className="inner"
             type="email"
-            placeholder="email"
+            id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
-        <div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
           <input
-            className="inner"
             type="password"
-            placeholder="password"
+            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <button  onClick={handleSignIn} id="button" type="submit">
-          Sign in 
+        <button className="btn" type="submit">
+          Sign in
         </button>
-		<ToastContainer />
+        <ToastContainer />
       </form>
-      <br />
-      <div className="down_block1">
+      <div className="link">
         <p>
-          Don't have an account? <span>Sign up</span>
+          Don't have an account? <a href="/signup">Sign up</a>
         </p>
       </div>
     </div>
