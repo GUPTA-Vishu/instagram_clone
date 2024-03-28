@@ -1,76 +1,101 @@
 .profile-page {
-    max-width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.upper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.profile {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile_content {
+  flex-grow: 1;
+}
+
+.profile_content h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.items p {
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+
+.item {
+  width: 200px;
+  height:200px;
+  position:relative;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image fills the square container */
+  border-radius: 5px; /* Apply border radius to the image */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+@media screen and (max-width: 768px) {
+  .profile-page {
+    padding: 10px;
   }
-  
+
   .upper {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap; /* Ensures items wrap to next line on smaller screens */
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
+
   .profile-pic {
-    margin-right: 20px; /* Adjusted margin for better spacing */
+    width: 100px;
+    height: 100px;
+    margin-right: 0;
+    margin-bottom: 10px;
   }
-  
-  .profile {
+
+  .profile_content h1 {
+    font-size: 20px;
+  }
+
+  .items p {
+    margin-right: 10px;
+    font-size: 14px;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 5px;
+  }
+
+  .item {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
   }
-  
-  .profile_content {
-    flex-grow: 1;
-  }
-  
-  .items {
-    display: flex;
-    flex-wrap: wrap; /* Ensure items wrap on smaller screens */
-    gap: 20px; /* Reduced gap for better spacing */
-  }
-  
-  .profile_content h1 {
-    margin: 10px 0; /* Adjusted margin for better spacing */
-  }
-  
-  @media screen and (max-width: 768px) {
-    .profile-pic {
-      margin-right: 10px;
-    }
-  
-    .profile {
-      width: 100px;
-      height: 100px;
-    }
-  
-    .items {
-      margin-left: 0; /* Remove left margin on smaller screens */
-      justify-content: center; /* Center items on smaller screens */
-    }
-    .gallery{
-        display: flex;
-        
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .profile-page {
-      padding: 10px;
-    }
-  
-    .profile-pic {
-      margin: 0 auto 20px auto; /* Center profile picture */
-    }
-  
-    .profile {
-      width: 80px;
-      height: 80px;
-    }
-  
-    .items {
-      margin-left: 0; /* Remove left margin on smaller screens */
-      justify-content: center; /* Center items on smaller screens */
-    }
-  }
-  
+}

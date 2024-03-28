@@ -16,6 +16,9 @@ router.get("/allposts",(req,res)=>{
   .then(posts=>res.json(posts))
   .catch(err=>console.log(err))
 });
+
+
+
 router.post("/createPost", requireLogin, async (req, res) => {
   const { caption, pic } = req.body;
   console.log(pic);
@@ -39,5 +42,14 @@ router.post("/createPost", requireLogin, async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+router.get("/myposts",requireLogin, async (req, res) => {
+  Post.find({postedBy: req.user._id})
+  .populate("postedBy", "_id name ")
+  .then(myposts => res.json(myposts))
+
+   
+})
+
 
 module.exports = router;
