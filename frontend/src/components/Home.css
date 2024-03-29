@@ -66,9 +66,10 @@
   cursor: pointer;
 }
 
-.card-comment button:hover {
-  background-color: #2684f5; /* Darker shade of blue */
-}
+
+
+
+
 
 /* Media queries for mobile responsiveness */
 @media (max-width: 768px) {

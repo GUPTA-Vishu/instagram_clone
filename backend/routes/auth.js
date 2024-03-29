@@ -73,8 +73,11 @@ router.post("/signin", (req, res) => {
       if (result) {
         // Generate JWT token
         const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET);
-        console.log(token);
-        return res.status(200).json({ message: "Signed in successfully", token });
+        const {_id,name,email,userName}=savedUser
+        console.log(token)
+        res.json({token,user:{_id,name,email,userName}})
+        console.log({token,user:{_id,name,email,userName}})
+        
       } else {
         return res.status(422).json({ error: "Invalid password" });
       }

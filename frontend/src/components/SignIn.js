@@ -6,7 +6,7 @@ import { LoginContext } from "../context/LoginContext";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const { setUserLogin } = useContext(LoginContext);
@@ -16,6 +16,7 @@ const SignIn = () => {
 
   const notifyA = (msg) => toast.error(msg);
   const notifyB = (msg) => toast.success(msg);
+
   const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   const handleSignIn = (e) => {
@@ -43,10 +44,12 @@ const SignIn = () => {
         if (data.error) {
           notifyA(data.error);
         } else {
-          notifyB("signed in successfully");
+          notifyB("Signed in successfully");
+
 
           console.log(data.token);
-          localStorage.setItem("jwt", data.token);
+          localStorage.setItem("jwt", data.token)
+          localStorage.setItem("user", JSON.stringify(data.user))
           setUserLogin(true);
           navigate("/");
         }

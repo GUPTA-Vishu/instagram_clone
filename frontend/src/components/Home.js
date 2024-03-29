@@ -7,7 +7,7 @@ const Welcome = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem("jwt");
     if (!token) {
       navigate("/signup"); // Navigate to the signup page if the user is not logged in
       return; // Prevent further execution
@@ -19,14 +19,49 @@ const Welcome = () => {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
-      }
-    }).then(res => res.json())
-      .then(result => {
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
         console.log(result);
         setData(result); // Set the posts data
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }, [navigate]); // Adding navigate as a dependency
+
+  const LikePost = (id) => {
+    fetch("http://localhost:5000/like", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify({
+        postId: id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+      });
+  };
+
+  const unLikePost = (id) => {
+    fetch("http://localhost:5000/unlike", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify({
+        postId: id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+      });
+  };
 
   return (
     <div>
@@ -34,19 +69,43 @@ const Welcome = () => {
         <div key={post._id} className="card">
           <div className="card-header">
             {/* You might need to adjust these fields based on your post object structure */}
-            <img src={post.postedBy.profilePic || "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} alt={post.postedBy.name} />
+            <img
+              src={
+                post.postedBy.profilePic ||
+                "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              }
+              alt={post.postedBy.name}
+            />
             <p>{post.postedBy.name}</p>
           </div>
           <div className="card-container">
             <img src={post.photo} alt="Post" />
           </div>
           <div className="card-bottom">
-            <span className="material-symbols-outlined">favorite</span>
-            
+         
+            <span
+              className="material-symbols-outlined"
+              onClick={() => {
+                LikePost(post._id);
+              }}
+            >
+              favorite
+            </span>
+            <span
+              class="material-symbols-outlined"
+              onClick={() => {
+                unLikePost(post._id);
+              }}
+            >
+              favorite
+            </span>
+
             <p>{post.body}</p>
           </div>
           <div className="card-comment">
-            <span className="material-symbols-outlined">sentiment_satisfied</span>
+            <span className="material-symbols-outlined">
+              sentiment_satisfied
+            </span>
             <input type="text" placeholder="add a comment" />
             <button>post</button>
           </div>
