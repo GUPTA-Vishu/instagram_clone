@@ -42,6 +42,17 @@ const Welcome = () => {
     })
       .then((res) => res.json())
       .then((result) => {
+        const newData=data.map((post)=>{
+          if(post._id===result._id){
+            return result;
+
+          }
+          else {
+            return post;
+
+          }
+        })
+        setData(newData)
         console.log(result);
       });
   };
@@ -59,6 +70,17 @@ const Welcome = () => {
     })
       .then((res) => res.json())
       .then((result) => {
+        const newData=data.map((post)=>{
+          if(post._id===result._id){
+            return result;
+
+          }
+          else {
+            return post;
+
+          }
+        })
+        setData(newData)
         console.log(result);
       });
   };
@@ -82,26 +104,34 @@ const Welcome = () => {
             <img src={post.photo} alt="Post" />
           </div>
           <div className="card-bottom">
-         
-            <span
-              className="material-symbols-outlined"
-              onClick={() => {
-                LikePost(post._id);
-              }}
-            >
-              favorite
-            </span>
-            <span
-              class="material-symbols-outlined"
-              onClick={() => {
-                unLikePost(post._id);
-              }}
-            >
-              favorite
-            </span>
-
-            <p>{post.body}</p>
-          </div>
+  {(() => {
+    if (post.Likes.includes(JSON.parse(localStorage.getItem("user"))._id)) {
+      return (
+        <span
+          className="material-symbols-outlined material-symbols-outlined-red"
+          onClick={() => {
+            unLikePost(post._id);
+          }}
+        >
+          favorite
+        </span>
+      );
+    } else {
+      return (
+        <span
+          className="material-symbols-outlined"
+          onClick={() => {
+            LikePost(post._id);
+          }}
+        >
+          favorite
+        </span>
+      );
+    }
+  })()}
+<p>{post.Likes.length} Likes</p>
+  <p>{post.body}</p>
+</div>
           <div className="card-comment">
             <span className="material-symbols-outlined">
               sentiment_satisfied

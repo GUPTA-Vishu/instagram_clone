@@ -31,7 +31,7 @@ const Profile = () => {
           />
         </div>
         <div className="profile_content">
-          <h1>Vimal Prakash</h1>
+          <h1>{JSON.parse(localStorage.getItem("user")).name}</h1>
           <div className="items">
             <p>{pics.length} posts</p>
             <p>200 followers</p>

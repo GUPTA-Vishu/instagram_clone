@@ -65,6 +65,24 @@
   border: none;
   cursor: pointer;
 }
+.material-symbols-outlined-red {
+  color: red;
+  position: relative; /* Position relative for absolute positioning of ::before */
+  cursor: pointer;
+}
+
+.material-symbols-outlined-red::before {
+  content: '\2665'; /* Unicode for heart character */
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: red;
+  font-size: 22px; /* Adjust font size as needed */
+}
+
+.material-symbols-outlined {
+  cursor: pointer; 
+}
 
 
 
