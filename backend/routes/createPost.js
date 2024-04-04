@@ -97,6 +97,31 @@ router.put("/unlike", requireLogin, async (req, res) => {
   }
 });
 
+router.put("/comment", requireLogin, async (req, res) => {
+  try {
+    const comment = {
+      comment: req.body.text,
+      postedBy: req.user._id
+    };
+
+    const updatedPost = await Post.findByIdAndUpdate(
+      req.body.postId,
+      {
+        $push: { comments: comment }
+      },
+      {
+        new: true
+      }
+    )
+    .populate("comments.postedBy", "_id name")
+    .populate("postedBy", "_id name Photo");
+
+    res.json(updatedPost);
+  } catch (err) {
+    res.status(422).json({ error: err.message });
+  }
+});
+
 
 
 
