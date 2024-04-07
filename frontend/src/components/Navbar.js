@@ -71,7 +71,7 @@ const Navbar = ({login}) => {
 				</Link>
 			</div>
 			<ul className='nav-menu'>
-				{loginStatus()};
+				{loginStatus()}
 
 			</ul>
 			<div className='toggle_btn' onClick={toggleBtn}>
