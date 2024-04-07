@@ -8,8 +8,13 @@ body {
   .container {
     width: 100%;
     max-width: 400px;
-    margin: 5% auto;
+    margin-left: 25%;
+    margin-top:5%;
+
+    
     padding: 20px;
+    display:flex;
+    flex-direction: column;
     box-sizing: border-box;
     background-color: #fff;
     border-radius: 18px;
