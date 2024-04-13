@@ -19,7 +19,7 @@ const Welcome = () => {
     }
 
     // Fetching posts from the server
-    fetch("http://localhost:5000/allposts", {
+    fetch("/allposts", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const Welcome = () => {
   }, [navigate]); // Adding navigate as a dependency
 
   const LikePost = (id) => {
-    fetch("http://localhost:5000/like", {
+    fetch("/like", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Welcome = () => {
   };
 
   const unLikePost = (id) => {
-    fetch("http://localhost:5000/unlike", {
+    fetch("/unlike", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const Welcome = () => {
   };
 
   const makeComment = (text, id) => {
-    fetch("http://localhost:5000/comment", {
+    fetch("/comment", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

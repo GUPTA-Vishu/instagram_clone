@@ -29,7 +29,7 @@ const SignIn = () => {
       return;
     }
 
-    fetch("http://localhost:5000/signin", {
+    fetch("/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
