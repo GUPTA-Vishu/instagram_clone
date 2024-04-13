@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose');
+const path = require('path');
 app.use(cors());
 app.use(express.json());
 
@@ -10,6 +11,7 @@ require("./models/models");
 require("./models/post");
 
 app.use(require("./routes/auth"));
+
 app.use(require("./routes/createPost"));
 
 
@@ -21,14 +23,22 @@ mongoose.connect(mongoUrl);
 
 
 // Define a route for the root URL
-app.get('/', (req, res) => {
-  res.send('Hello, World!'); // Send a simple text response
-});
+
 
 // Connect to MongoDB
 MongoClient.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to MongoDB');
+
+    //serving the frontend
+    app.use(express.static(path.join(__dirname,"./frontend/build" )))
+
+    app.get("*",(req,res)=>{
+      res.sendFile(path.join(__dirname,"./frontend/build/index.html"),
+        function(err){
+          res.status(500).send(err)
+        })
+    })
     
     // Define additional routes or perform database operations here
 

@@ -9,9 +9,7 @@ const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../keys"); // Import JWT secret key from keys.js
 const requireLogin = require("../middlewares/requireLogin");
 
-router.get("/", (req, res) => {
-  res.send("hello world");
-});
+
 
 router.get("/createPost", requireLogin, (req, res) => {
   console.log("hello auth");
